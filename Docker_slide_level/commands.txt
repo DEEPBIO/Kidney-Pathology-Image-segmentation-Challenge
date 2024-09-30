@@ -1,0 +1,11 @@
+python inference_slide.py --data_dir /mnt/nfs7/workshop/kidney_KPI_2024/val_wsi_level/DN/ --output_dir /mnt/ssd1/temp/test2 --batch_size 32
+
+docker build -t kpis_slide_level_v2 .
+docker run --rm -v /mnt/nfs7/workshop/kidney_KPI_2024/val_wsi_level/DN:/input -v /mnt/ssd1/iypaik/temp/slide_DN:/output --gpus all --ipc=host -it kpis_slide_level_v2 --batch_size 32
+
+
+docker tag kpis_slide_level_v2 humandream1/kpis:slide_level_v2
+docker push humandream1/kpis:slide_level_v2
+
+docker pull humandream1/kpis:slide_level_v2
+docker run --rm -v /mnt/nfs7/workshop/kidney_KPI_2024/val_wsi_level/DN:/input -v /mnt/ssd1/iypaik/temp/slide_DN:/output --gpus all --ipc=host -it humandream1/kpis:slide_level_v2 --batch_size 32

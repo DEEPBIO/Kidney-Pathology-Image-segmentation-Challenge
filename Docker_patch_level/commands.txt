@@ -1,0 +1,8 @@
+python inference_patch.py --data_dir /mnt/nfs7/workshop/kidney_KPI_2024/patch_level/val_data/DN/ --output_dir /mnt/ssd1/temp/test_49 --batch_size 64
+
+docker build -t kpis_patch_level_v2 .
+docker tag kpis_patch_level_v2 humandream1/kpis:patch_level_v2
+docker push humandream1/kpis:patch_level_v2
+
+docker pull humandream1/kpis:patch_level_v2
+docker run --rm -v /mnt/nfs7/workshop/kidney_KPI_2024/patch_level/val_data/DN:/input -v /mnt/ssd1/iypaik/temp:/output --gpus all --ipc=host -it humandream1/kpis:patch_level_v2 --batch_size 32
