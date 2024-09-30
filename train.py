@@ -16,7 +16,7 @@ from torch.optim import SGD
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from checkpoint import Checkpoint
-from deepbio.utils import send_slack_message
+# from deepbio.utils import send_slack_message
 from tensorboardX import SummaryWriter
 
 import my_folder
@@ -396,7 +396,7 @@ def train(args, _round, resume_check):
             best_score = score
             print("Saving...")
         # Log epoch.
-        send_slack_message(log)
+        # send_slack_message(log)
 
     logging.info(log)
     logging.info("Finished training!")
